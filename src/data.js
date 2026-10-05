@@ -1,4 +1,7 @@
 // All invitation copy and media paths live here.
+import adPhoto from './ad.jpeg'
+import adiPhoto from './adi.jpeg'
+
 export const WEDDING_DATE = new Date('2026-11-20T19:00:00+05:30')
 
 export const media = {
@@ -7,8 +10,10 @@ export const media = {
   hero: '/images/invitation-reference.png',
   ceremony: '/images/haldi-mehendi.png',
   footer: '/aditi.jpeg',
-  couple: '/images/couple.png', // placeholder for couple photo
+  couple: '/images/couple.png',
   song: '/inaam.mp3',
+  bridePhoto: adiPhoto,
+  groomPhoto: adPhoto,
 }
 
 export const events = [

@@ -18,7 +18,6 @@ export default function App() {
   const [playing, setPlaying] = useState(false)
   const video = useRef(null)
   const root = useRef(null)
-  const audio = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const leafY = useTransform(scrollYProgress, [0, 1], [0, 180])
@@ -90,20 +89,9 @@ export default function App() {
     return () => ctx.revert()
   }, [introDone, reduce])
 
-  useEffect(() => {
-    audio.current = new Audio(media.song)
-    audio.current.loop = true
-    return () => {
-      if (audio.current) {
-        audio.current.pause()
-      }
-    }
-  }, [])
+  // Audio is now handled by YouTube iframe
 
   const startIntro = () => {
-    if (audio.current) {
-      audio.current.play().catch(e => console.error(e))
-    }
     const v = video.current
     if (v) {
       v.currentTime = 0
@@ -114,6 +102,17 @@ export default function App() {
 
   return (
     <main ref={root}>
+      {playing && (
+        <iframe
+          width="1"
+          height="1"
+          src="https://www.youtube.com/embed/6CXKtmRjOto?autoplay=1&start=141&loop=1&playlist=6CXKtmRjOto"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="autoplay; encrypted-media"
+          style={{ position: 'absolute', top: '-9999px', left: '-9999px', visibility: 'hidden' }}
+        ></iframe>
+      )}
       <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
 
       <div className="lantern-atmosphere" aria-hidden="true">
@@ -219,7 +218,13 @@ export default function App() {
       <section className="parents-section" style={{textAlign: 'center', padding: '40px 20px', background: 'var(--ivory)'}}>
         <Reveal>
           <div className="parent-profile" style={{marginBottom: '40px'}}>
-            <div className="profile-img" style={{width: '120px', height: '120px', borderRadius: '50%', background: '#ebd7b2', margin: '0 auto 15px', border: '3px solid var(--gold)'}}></div>
+            <div className="profile-img" style={{
+              width: '120px', height: '120px', borderRadius: '50%', 
+              backgroundImage: `url(${media.bridePhoto})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 20%', // Adjusted to center face
+              margin: '0 auto 15px', border: '3px solid var(--gold)'
+            }}></div>
             <p className="script" style={{margin: '0', fontSize: '14px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)'}}>Bride</p>
             <h3 style={{fontFamily: 'Parisienne, cursive', fontSize: '32px', color: 'var(--olive)', margin: '5px 0'}}>Aditi</h3>
             <p style={{fontSize: '14px', color: 'var(--ink)', fontStyle: 'italic', margin: '5px 0'}}>Daughter of</p>
@@ -227,7 +232,13 @@ export default function App() {
           </div>
           
           <div className="parent-profile">
-            <div className="profile-img" style={{width: '120px', height: '120px', borderRadius: '50%', background: '#ebd7b2', margin: '0 auto 15px', border: '3px solid var(--gold)'}}></div>
+            <div className="profile-img" style={{
+              width: '120px', height: '120px', borderRadius: '50%', 
+              backgroundImage: `url(${media.groomPhoto})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 15%', // Adjusted to center face
+              margin: '0 auto 15px', border: '3px solid var(--gold)'
+            }}></div>
             <p className="script" style={{margin: '0', fontSize: '14px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)'}}>Groom</p>
             <h3 style={{fontFamily: 'Parisienne, cursive', fontSize: '32px', color: 'var(--olive)', margin: '5px 0'}}>Eshaan</h3>
             <p style={{fontSize: '14px', color: 'var(--ink)', fontStyle: 'italic', margin: '5px 0'}}>Son of</p>
@@ -253,8 +264,8 @@ export default function App() {
 
       <section className="events">
         <Reveal>
-          <h2>Wedding festivities</h2>
-          <p className="section-intro">Five beautiful moments. One unforgettable celebration.</p>
+          <h2>Engagement Ceremony</h2>
+          <p className="section-intro">One unforgettable celebration.</p>
         </Reveal>
         <div className="event-list">
           {events.map((e, i) => (
@@ -316,22 +327,27 @@ export default function App() {
       </section>
 
       <footer>
-        <div className="flower-float" style={{ position: 'absolute', top: '55%', right: '10%', color: 'var(--rose)', opacity: 0.8, animation: 'glassFloat 4s ease-in-out infinite alternate' }}>
-          <FlowerLotus size={64} weight="thin" />
+        <div className="flower-float" style={{ position: 'absolute', top: '15%', right: '8%', color: 'var(--rose)', opacity: 0.5, pointerEvents: 'none', animation: 'glassFloat 4s ease-in-out infinite alternate' }}>
+          <FlowerLotus size={46} weight="thin" />
         </div>
-        <div className="flower-float" style={{ position: 'absolute', top: '65%', left: '8%', color: 'var(--gold)', opacity: 0.7, animation: 'glassFloat 5s ease-in-out infinite alternate-reverse' }}>
-          <FlowerLotus size={48} weight="light" />
+        <div className="flower-float" style={{ position: 'absolute', top: '22%', left: '7%', color: 'var(--gold)', opacity: 0.45, pointerEvents: 'none', animation: 'glassFloat 5s ease-in-out infinite alternate-reverse' }}>
+          <FlowerLotus size={38} weight="light" />
         </div>
-        <div className="flower-float" style={{ position: 'absolute', top: '78%', right: '15%', color: 'var(--olive)', opacity: 0.5, animation: 'glassFloat 6s ease-in-out infinite alternate' }}>
-          <FlowerLotus size={32} weight="thin" />
+        <div className="flower-float" style={{ position: 'absolute', bottom: '25%', right: '12%', color: 'var(--olive)', opacity: 0.4, pointerEvents: 'none', animation: 'glassFloat 6s ease-in-out infinite alternate' }}>
+          <FlowerLotus size={28} weight="thin" />
         </div>
-        <div className="flower-float" style={{ position: 'absolute', top: '52%', left: '18%', color: 'var(--coral)', opacity: 0.6, animation: 'glassFloat 4.5s ease-in-out infinite alternate-reverse' }}>
-          <FlowerLotus size={40} weight="light" />
+        <div className="flower-float" style={{ position: 'absolute', bottom: '20%', left: '10%', color: 'var(--coral)', opacity: 0.45, pointerEvents: 'none', animation: 'glassFloat 4.5s ease-in-out infinite alternate-reverse' }}>
+          <FlowerLotus size={34} weight="light" />
         </div>
-        <img src={media.footer} loading="lazy" alt="Aditi and Eshaan wedding illustration" />
-        <div className="footer-overlay" />
+
+        <div className="footer-divider" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '28px', width: '100%', maxWidth: '320px', opacity: 0.7 }}>
+          <i style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent, var(--gold))' }} />
+          <FlowerLotus size={24} weight="thin" style={{ color: 'var(--gold)' }} />
+          <i style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, var(--gold), transparent)' }} />
+        </div>
+
         <Reveal className="footer-copy">
-          <Sparkle size={27} weight="thin" />
+          <Sparkle size={26} weight="thin" style={{ color: 'var(--gold)' }} />
           <p>We cannot wait to celebrate with you</p>
           <h2>
             Aditi <i>&amp;</i> Eshaan
