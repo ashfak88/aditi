@@ -18,6 +18,7 @@ export default function App() {
   const [playing, setPlaying] = useState(false)
   const video = useRef(null)
   const root = useRef(null)
+  const audio = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const leafY = useTransform(scrollYProgress, [0, 1], [0, 180])
@@ -89,7 +90,20 @@ export default function App() {
     return () => ctx.revert()
   }, [introDone, reduce])
 
+  useEffect(() => {
+    audio.current = new Audio(media.song)
+    audio.current.loop = true
+    return () => {
+      if (audio.current) {
+        audio.current.pause()
+      }
+    }
+  }, [])
+
   const startIntro = () => {
+    if (audio.current) {
+      audio.current.play().catch(e => console.error(e))
+    }
     const v = video.current
     if (v) {
       v.currentTime = 0

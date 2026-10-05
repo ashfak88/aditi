@@ -8,13 +8,13 @@ export const media = {
   ceremony: '/images/haldi-mehendi.png',
   footer: '/aditi.jpeg',
   couple: '/images/couple.png', // placeholder for couple photo
+  song: '/inaam.mp3',
 }
 
 export const events = [
   { name: 'Engagement', date: '20 November 2026', time: '7:00 PM', venue: 'Landmark, Muzaffarpur', note: 'Chowk, Main Road, above Reliance Digital, Maripur, Bihar 842001', icon: '✦' },
 ]
 
-// Floating lantern atmosphere: position (%), parallax depth, scale, blur (px).
 export const atmosphereLanterns = [
   { x: 6, y: 12, d: 0.22, s: 0.62, b: 2.2 },
   { x: 89, y: 20, d: 0.35, s: 0.78, b: 1.4 },
