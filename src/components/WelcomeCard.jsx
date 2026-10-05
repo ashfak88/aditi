@@ -15,10 +15,10 @@ export default function WelcomeCard({ onDone }) {
       <div className="welcome-names">
         <small>Together with our families</small>
         <h1>
-          Aarav <i>&amp;</i> Ananya
+          Aditi <i>&amp;</i> Eshaan
         </h1>
-        <p>invite you to celebrate their wedding</p>
-        <span>14 · 02 · 2027</span>
+        <p>invite you to celebrate their engagement</p>
+        <span>20 · 11 · 2026</span>
       </div>
       <motion.button
         aria-label="Open Aarav and Ananya's invitation"

@@ -21,7 +21,6 @@ export default function App() {
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const leafY = useTransform(scrollYProgress, [0, 1], [0, 180])
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 95])
 
   // Scroll-driven GSAP choreography (starts once the intro is finished).
   useEffect(() => {
@@ -147,11 +146,10 @@ export default function App() {
       )}
 
       <section className="hero">
-        <motion.img
+        <img
           className="hero-art"
           src={media.hero}
           alt="Aarav and Ananya before a South Indian temple, framed by jasmine and lotus flowers"
-          style={{ y: reduce ? 0 : heroY }}
         />
         <div className="hero-scrim" />
         <motion.div
@@ -160,16 +158,17 @@ export default function App() {
           animate={{ opacity: +!!introDone, y: introDone ? 0 : 24 }}
           transition={{ delay: 0.15, duration: 1 }}
         >
+          <p className="mantra" style={{fontSize: '14px', marginBottom: '15px', color: '#8c2f39'}}>वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br/>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
           <p className="blessing">With the blessings of our families</p>
           <h1>
-            Aarav <span>&amp;</span> Ananya
+            Aditi <span>&amp;</span> Eshaan
           </h1>
           <div className="date-rule">
             <i />
-            14 · 02 · 2027
+            20 · 11 · 2026
             <i />
           </div>
-          <p>Madurai, Tamil Nadu</p>
+          <p>Muzaffarpur, Bihar</p>
         </motion.div>
         <motion.div className="leaf-float left" style={{ y: reduce ? 0 : leafY }} />
         <motion.div className="leaf-float right" style={{ y: reduce ? 0 : leafY }} />
@@ -198,7 +197,27 @@ export default function App() {
             From chance hellos to a thousand shared dreams, we found home in each other. With joyful hearts, we invite you to witness the beginning of our forever.
           </p>
           <div className="signature">
-            Aarav <i>&amp;</i> Ananya
+            Aditi <i>&amp;</i> Eshaan
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="parents-section" style={{textAlign: 'center', padding: '40px 20px', background: 'var(--ivory)'}}>
+        <Reveal>
+          <div className="parent-profile" style={{marginBottom: '40px'}}>
+            <div className="profile-img" style={{width: '120px', height: '120px', borderRadius: '50%', background: '#ebd7b2', margin: '0 auto 15px', border: '3px solid var(--gold)'}}></div>
+            <p className="script" style={{margin: '0', fontSize: '14px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)'}}>Bride</p>
+            <h3 style={{fontFamily: 'Parisienne, cursive', fontSize: '32px', color: 'var(--olive)', margin: '5px 0'}}>Aditi</h3>
+            <p style={{fontSize: '14px', color: 'var(--ink)', fontStyle: 'italic', margin: '5px 0'}}>Daughter of</p>
+            <p style={{fontSize: '16px', color: 'var(--ink)', margin: '0'}}>Vishal Sarraf & Annu Sarraf</p>
+          </div>
+          
+          <div className="parent-profile">
+            <div className="profile-img" style={{width: '120px', height: '120px', borderRadius: '50%', background: '#ebd7b2', margin: '0 auto 15px', border: '3px solid var(--gold)'}}></div>
+            <p className="script" style={{margin: '0', fontSize: '14px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)'}}>Groom</p>
+            <h3 style={{fontFamily: 'Parisienne, cursive', fontSize: '32px', color: 'var(--olive)', margin: '5px 0'}}>Eshaan</h3>
+            <p style={{fontSize: '14px', color: 'var(--ink)', fontStyle: 'italic', margin: '5px 0'}}>Son of</p>
+            <p style={{fontSize: '16px', color: 'var(--ink)', margin: '0'}}>Sanjay Singh & Swera Singh</p>
           </div>
         </Reveal>
       </section>
@@ -245,29 +264,29 @@ export default function App() {
       <section className="venue ornamental">
         <Reveal>
           <MapPin size={38} weight="thin" />
-          <p className="script">Meet us in Madurai</p>
-          <h2>Meenakshi Amman Temple</h2>
-          <p>Madurai Main, Madurai, Tamil Nadu 625001</p>
+          <p className="script">Meet us in Muzaffarpur</p>
+          <h2>Landmark</h2>
+          <p>Chowk, Main Road, above Reliance Digital, Maripur, Muzaffarpur, Bihar 842001</p>
           <div className="map google-map">
             <iframe
-              title="Google Map of Meenakshi Amman Temple"
+              title="Google Map of Landmark, Muzaffarpur"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Meenakshi%20Amman%20Temple%2C%20Madurai&z=15&output=embed"
+              src="https://www.google.com/maps?q=Landmark%2C%20Maripur%2C%20Muzaffarpur&z=15&output=embed"
             />
             <div className="map-overlay">
               <span>
                 <MapPin size={19} weight="fill" />
-                Wedding venue
+                Engagement venue
               </span>
-              <b>Meenakshi Amman Temple</b>
+              <b>Landmark, Muzaffarpur</b>
               <small>Pinch or drag to explore</small>
             </div>
           </div>
           <div className="actions">
             <a
               className="button primary"
-              href="https://www.google.com/maps/search/?api=1&query=Meenakshi+Amman+Temple+Madurai"
+              href="https://www.google.com/maps/search/?api=1&query=Landmark+Maripur+Muzaffarpur"
               target="_blank"
               rel="noreferrer"
             >
@@ -283,15 +302,27 @@ export default function App() {
       </section>
 
       <footer>
-        <img src={media.footer} loading="lazy" alt="Aarav and Ananya wedding illustration" />
+        <div className="flower-float" style={{ position: 'absolute', top: '55%', right: '10%', color: 'var(--rose)', opacity: 0.8, animation: 'glassFloat 4s ease-in-out infinite alternate' }}>
+          <FlowerLotus size={64} weight="thin" />
+        </div>
+        <div className="flower-float" style={{ position: 'absolute', top: '65%', left: '8%', color: 'var(--gold)', opacity: 0.7, animation: 'glassFloat 5s ease-in-out infinite alternate-reverse' }}>
+          <FlowerLotus size={48} weight="light" />
+        </div>
+        <div className="flower-float" style={{ position: 'absolute', top: '78%', right: '15%', color: 'var(--olive)', opacity: 0.5, animation: 'glassFloat 6s ease-in-out infinite alternate' }}>
+          <FlowerLotus size={32} weight="thin" />
+        </div>
+        <div className="flower-float" style={{ position: 'absolute', top: '52%', left: '18%', color: 'var(--coral)', opacity: 0.6, animation: 'glassFloat 4.5s ease-in-out infinite alternate-reverse' }}>
+          <FlowerLotus size={40} weight="light" />
+        </div>
+        <img src={media.footer} loading="lazy" alt="Aditi and Eshaan wedding illustration" />
         <div className="footer-overlay" />
         <Reveal className="footer-copy">
           <Sparkle size={27} weight="thin" />
           <p>We cannot wait to celebrate with you</p>
           <h2>
-            Aarav <i>&amp;</i> Ananya
+            Aditi <i>&amp;</i> Eshaan
           </h2>
-          <span>14 February 2027 · Madurai</span>
+          <span>20 November 2026 · Muzaffarpur</span>
         </Reveal>
         <Credit />
       </footer>

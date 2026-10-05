@@ -19,7 +19,7 @@ export default function Credit() {
         fontSize: '9px',
         textTransform: 'uppercase',
         letterSpacing: '.2em',
-        color: 'rgba(255,242,214,.6)',
+        color: 'rgba(92, 53, 59, 0.6)', /* using a slightly faded --ink color for visibility on peach */
         textDecoration: 'none',
         paddingBottom: '14px',
       }}

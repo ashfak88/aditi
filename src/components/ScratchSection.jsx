@@ -59,10 +59,10 @@ export default function ScratchSection() {
         <h2>A day written in the stars</h2>
         <div className="scratch-card">
           <div className="date-reveal">
-            <small>Sunday</small>
-            <b>14</b>
-            <span>February · 2027</span>
-            <em>Madurai</em>
+            <small>Friday</small>
+            <b>20</b>
+            <span>November · 2026</span>
+            <em>Muzaffarpur</em>
           </div>
           <canvas
             ref={canvas}
