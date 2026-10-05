@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowDown, CalendarBlank, FlowerLotus, MapPin, Sparkle } from '@phosphor-icons/react'
+import { ArrowDown, CalendarBlank, FlowerLotus, MapPin, Sparkle, SpeakerHigh, SpeakerSlash } from '@phosphor-icons/react'
 import { atmosphereLanterns, events, media } from './data'
 import { downloadWeddingIcs } from './calendar'
 import Reveal from './components/Reveal'
@@ -16,7 +16,9 @@ gsap.registerPlugin(ScrollTrigger)
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
   const [playing, setPlaying] = useState(false)
+  const [isMuted, setIsMuted] = useState(false)
   const video = useRef(null)
+  const audio = useRef(null)
   const root = useRef(null)
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
@@ -89,7 +91,23 @@ export default function App() {
     return () => ctx.revert()
   }, [introDone, reduce])
 
-  // Audio is now handled by YouTube iframe
+  const audioTimer = useRef(null)
+
+  useEffect(() => {
+    const a = audio.current
+    if (!a) return
+    a.loop = true
+    const handleEnded = () => {
+      a.currentTime = 0
+      a.play().catch(() => {})
+    }
+    a.addEventListener('ended', handleEnded)
+    return () => {
+      clearTimeout(audioTimer.current)
+      a.removeEventListener('ended', handleEnded)
+      a.pause()
+    }
+  }, [])
 
   const startIntro = () => {
     const v = video.current
@@ -98,20 +116,62 @@ export default function App() {
       setPlaying(true)
       v.play().catch(() => setPlaying(false))
     }
+
+    clearTimeout(audioTimer.current)
+    audioTimer.current = setTimeout(() => {
+      if (audio.current) {
+        audio.current.currentTime = 0
+        audio.current.play().catch((err) => console.log('Audio playback prevented:', err))
+      }
+    }, 1000)
+  }
+
+  const skipIntro = () => {
+    clearTimeout(audioTimer.current)
+    if (audio.current && audio.current.paused) {
+      audio.current.play().catch(() => {})
+    }
+    setIntroDone(true)
+  }
+
+  const toggleAudio = () => {
+    if (!audio.current) return
+    if (audio.current.paused) {
+      audio.current.play().catch(() => {})
+      setIsMuted(false)
+    } else {
+      audio.current.pause()
+      setIsMuted(true)
+    }
   }
 
   return (
     <main ref={root}>
+      {/* Background song (song aditi.mpeg) looping repeatedly */}
+      <audio
+        ref={audio}
+        src={media.song}
+        preload="auto"
+        loop
+        playsInline
+        onEnded={() => {
+          if (audio.current) {
+            audio.current.currentTime = 0
+            audio.current.play().catch(() => {})
+          }
+        }}
+      />
+
+      {/* Floating audio control button */}
       {playing && (
-        <iframe
-          width="1"
-          height="1"
-          src="https://www.youtube.com/embed/6CXKtmRjOto?autoplay=1&start=141&loop=1&playlist=6CXKtmRjOto"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          style={{ position: 'absolute', top: '-9999px', left: '-9999px', visibility: 'hidden' }}
-        ></iframe>
+        <button
+          className={`audio-toggle-btn ${isMuted ? 'muted' : 'playing'}`}
+          onClick={toggleAudio}
+          aria-label={isMuted ? 'Unmute music' : 'Mute music'}
+          title={isMuted ? 'Unmute music' : 'Mute music'}
+        >
+          {isMuted ? <SpeakerSlash size={22} weight="fill" /> : <SpeakerHigh size={22} weight="fill" />}
+        </button>
       )}
       <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
 
@@ -151,7 +211,7 @@ export default function App() {
           <div className="garland-edge" />
           {!playing && <WelcomeCard onDone={startIntro} />}
           {playing && (
-            <button className="skip-intro" onClick={() => setIntroDone(true)}>
+            <button className="skip-intro" onClick={skipIntro}>
               Skip intro
             </button>
           )}
