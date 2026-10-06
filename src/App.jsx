@@ -279,10 +279,10 @@ export default function App() {
         <Reveal>
           <div className="parent-profile" style={{marginBottom: '40px'}}>
             <div className="profile-img" style={{
-              width: '120px', height: '120px', borderRadius: '50%', 
+              width: '160px', height: '160px', borderRadius: '50%', 
               backgroundImage: `url(${media.bridePhoto})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 20%', // Adjusted to center face
+              backgroundPosition: 'center 10%',
               margin: '0 auto 15px', border: '3px solid var(--gold)'
             }}></div>
             <p className="script" style={{margin: '0', fontSize: '14px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)'}}>Bride</p>
@@ -350,8 +350,8 @@ export default function App() {
         <Reveal>
           <MapPin size={38} weight="thin" />
           <p className="script">Meet us in Muzaffarpur</p>
-          <h2>Landmark</h2>
-          <p>Chowk, Main Road, above Reliance Digital, Maripur, Muzaffarpur, Bihar 842001</p>
+          <h2>The Landmark Hotel</h2>
+          <p>Maripur, Muzaffarpur</p>
           <div className="map google-map">
             <iframe
               title="Google Map of Landmark, Muzaffarpur"
@@ -364,7 +364,7 @@ export default function App() {
                 <MapPin size={19} weight="fill" />
                 Engagement venue
               </span>
-              <b>Landmark, Muzaffarpur</b>
+              <b>The Landmark Hotel, Muzaffarpur</b>
               <small>Pinch or drag to explore</small>
             </div>
           </div>

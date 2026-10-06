@@ -1,6 +1,6 @@
 // All invitation copy and media paths live here.
 import adPhoto from './ad.jpeg'
-import adiPhoto from './adi.jpeg'
+import adiPhoto from './aditi.jpeg'
 import songAditi from './song aditi.mpeg'
 
 export const WEDDING_DATE = new Date('2026-11-20T19:00:00+05:30')
@@ -18,7 +18,7 @@ export const media = {
 }
 
 export const events = [
-  { name: 'Engagement', date: '20 November 2026', time: '7:00 PM', venue: 'Landmark, Muzaffarpur', note: 'Chowk, Main Road, above Reliance Digital, Maripur, Bihar 842001', icon: '✦' },
+  { name: 'Engagement', date: '20 November 2026', time: '7:00 PM', venue: 'The Landmark Hotel, Muzaffarpur', note: 'Maripur, Muzaffarpur', icon: '✦' },
 ]
 
 export const atmosphereLanterns = [
