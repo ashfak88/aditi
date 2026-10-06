@@ -18,7 +18,7 @@ export const media = {
 }
 
 export const events = [
-  { name: 'Engagement', date: '20 November 2026', time: '7:00 PM', venue: 'The Landmark Hotel, Muzaffarpur', note: 'Maripur, Muzaffarpur', icon: '✦' },
+  { name: 'Engagement', date: '20 November 2026', time: '7:00 PM', venue: 'Venue:- The Landmark Hotel, Maripur,Muzaffarpur', note: '', icon: '✦' },
 ]
 
 export const atmosphereLanterns = [

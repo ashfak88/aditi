@@ -334,7 +334,7 @@ export default function App() {
               <div>
                 <span className="event-icon">{e.icon}</span>
                 <h3>{e.name}</h3>
-                <p>{e.note}</p>
+                {e.note && <p>{e.note}</p>}
                 <dl>
                   <div><dt>Date</dt><dd>{e.date}</dd></div>
                   <div><dt>Time</dt><dd>{e.time}</dd></div>
