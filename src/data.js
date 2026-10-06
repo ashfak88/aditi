@@ -1,4 +1,3 @@
-// All invitation copy and media paths live here.
 import adPhoto from './ad.jpeg'
 import adiPhoto from './aditi.jpeg'
 import songAditi from './song aditi.mpeg'

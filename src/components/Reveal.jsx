@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
 
-// Fade/slide-in when scrolled into view (once).
 export default function Reveal({ children, className = '' }) {
   const reduce = useReducedMotion()
   return (

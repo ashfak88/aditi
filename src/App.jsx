@@ -293,7 +293,7 @@ export default function App() {
           
           <div className="parent-profile">
             <div className="profile-img" style={{
-              width: '120px', height: '120px', borderRadius: '50%', 
+              width: '160px', height: '160px', borderRadius: '50%', 
               backgroundImage: `url(${media.groomPhoto})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center 15%', // Adjusted to center face
