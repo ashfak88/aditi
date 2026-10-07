@@ -15,7 +15,7 @@ export default function WelcomeCard({ onDone }) {
       <div className="welcome-names">
         <small>Together with our families</small>
         <h1>
-          Aditi <i>&amp;</i> Eshaan
+          Eshaan <i>&amp;</i> Aditi
         </h1>
         <p>invite you to celebrate their engagement</p>
         <span>20 · 11 · 2026</span>

@@ -234,7 +234,7 @@ export default function App() {
           <p className="mantra" style={{fontSize: '14px', marginBottom: '15px', color: '#8c2f39'}}>वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br/>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
           <p className="blessing">With the blessings of our families</p>
           <h1>
-            Aditi <span>&amp;</span> Eshaan
+            Eshaan <span>&amp;</span> Aditi
           </h1>
           <div className="date-rule">
             <i />
@@ -270,7 +270,7 @@ export default function App() {
             From chance hellos to a thousand shared dreams, we found home in each other. With joyful hearts, we invite you to witness the beginning of our forever.
           </p>
           <div className="signature">
-            Aditi <i>&amp;</i> Eshaan
+            Eshaan <i>&amp;</i> Aditi
           </div>
         </Reveal>
       </section>
@@ -410,7 +410,7 @@ export default function App() {
           <Sparkle size={26} weight="thin" style={{ color: 'var(--gold)' }} />
           <p>We cannot wait to celebrate with you</p>
           <h2>
-            Aditi <i>&amp;</i> Eshaan
+            Eshaan <i>&amp;</i> Aditi
           </h2>
           <span>20 November 2026 · Muzaffarpur</span>
         </Reveal>
