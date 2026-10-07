@@ -281,8 +281,8 @@ export default function App() {
             <div className="profile-img" style={{
               width: '160px', height: '160px', borderRadius: '50%', 
               backgroundImage: `url(${media.bridePhoto})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 10%',
+              backgroundSize: '140%',
+              backgroundPosition: 'center 15%',
               margin: '0 auto 15px', border: '3px solid var(--gold)'
             }}></div>
             <p className="script" style={{margin: '0', fontSize: '14px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)'}}>Bride</p>

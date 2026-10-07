@@ -1,4 +1,4 @@
-import adPhoto from './ad.jpeg'
+import adPhoto from './eshaan_new.png'
 import adiPhoto from './aditi.jpeg'
 import songAditi from './song aditi.mpeg'
 
